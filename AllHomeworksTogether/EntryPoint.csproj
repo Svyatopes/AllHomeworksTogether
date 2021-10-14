@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HomeworkArrays\HomeworkArrays.csproj" />
     <ProjectReference Include="..\HomeworkBranching\HomeworkBranching.csproj" />
     <ProjectReference Include="..\HomeworkLoops\HomeworkLoops.csproj" />
     <ProjectReference Include="..\HomeworkVariables\HomeworkVariables.csproj" />
