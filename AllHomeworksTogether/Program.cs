@@ -13,12 +13,26 @@ namespace AllHomeworksTogether
             //homeworkVariables.SolveFourthTask();
             //homeworkVariables.SolveFifthTask();
 
-            var homeworkBranching = new HomeworkBranching.HomeworkBranching();
+            //var homeworkBranching = new HomeworkBranching.HomeworkBranching();
             //homeworkBranching.SolveFirstTask();
             //homeworkBranching.SolveSecondTask();
             //homeworkBranching.SolveThirdTask();
             //homeworkBranching.SolveFourthTask();
-            homeworkBranching.SolveFifthTask();
+            //homeworkBranching.SolveFifthTask();
+
+            var homeworkLoops = new HomeworkLoops.HomeworkLoops();
+            //homeworkLoops.SolveFirstTask();
+            //homeworkLoops.SolveSecondTask();
+            //homeworkLoops.SolveThirdTask();
+            //homeworkLoops.SolveFourthTask();
+            //homeworkLoops.SolveFifthTask();
+            //homeworkLoops.SolveSixthTask();
+            //homeworkLoops.SolveSeventhTask();
+            //homeworkLoops.SolveEighthTask();
+            //homeworkLoops.SolveNinthTask();
+            //homeworkLoops.SolveTenthTask();
+            //homeworkLoops.SolveEleventhTask();
+            homeworkLoops.SolveTwelvethTask();
         }
     }
 }
