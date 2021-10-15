@@ -1,4 +1,5 @@
 ﻿using System;
+using Core;
 
 namespace HomeworkLoops
 {
@@ -9,8 +10,8 @@ namespace HomeworkLoops
         /// </summary>
         public void SolveFirstTask()
         {
-            int numberToPower = Helpers.GetUserNumberInt("Enter the number to power (A):");
-            int power = Helpers.GetUserNumberInt("Enter the power (B):");
+            int numberToPower = UserInputOutput.GetUserNumberInt("Enter the number to power (A):");
+            int power = UserInputOutput.GetUserNumberInt("Enter the power (B):");
 
             int resultOfPower = Calculations.PowInt(numberToPower, power);
 
@@ -23,9 +24,12 @@ namespace HomeworkLoops
         /// </summary>
         public void SolveSecondTask()
         {
-            int divider = Helpers.GetUserNumberInt("Enter the Divider:");
+            int divider = UserInputOutput.GetUserNumberInt("Enter the Divider:");
 
-            Helpers.PrintAllNumbersFrom1To1000Divided(divider);
+            foreach(var number in Calculations.GetAllNumbersFrom1To1000Divided(divider))
+            {
+                Console.WriteLine(number);
+            }
         }
 
         /// <summary>
@@ -33,7 +37,7 @@ namespace HomeworkLoops
         /// </summary>
         public void SolveThirdTask()
         {
-            int theNumber = Helpers.GetUserNumberInt("Enter THE NUMBER:");
+            int theNumber = UserInputOutput.GetUserNumberInt("Enter THE NUMBER:");
 
             int countOfNumbersThatSquareIsLessThanNumber = Calculations.GetCountOfNumbersThatSquareIsLessThanNumber(theNumber);
 
@@ -45,7 +49,7 @@ namespace HomeworkLoops
         /// </summary>
         public void SolveFourthTask()
         {
-            int theNumber = Helpers.GetUserNumberInt("Enter THE NUMBER:");
+            int theNumber = UserInputOutput.GetUserNumberInt("Enter THE NUMBER:");
 
             int largestDivider = Calculations.GetTheLargestDivisor(theNumber);
 
@@ -59,8 +63,8 @@ namespace HomeworkLoops
         /// </summary>
         public void SolveFifthTask()
         {
-            int firstBoundaryRange = Helpers.GetUserNumberInt("Enter the first boundary value of range:");
-            int secondBoudaryRange = Helpers.GetUserNumberInt("Enter the second boundary value of range:");
+            int firstBoundaryRange = UserInputOutput.GetUserNumberInt("Enter the first boundary value of range:");
+            int secondBoudaryRange = UserInputOutput.GetUserNumberInt("Enter the second boundary value of range:");
 
             if (firstBoundaryRange == secondBoudaryRange)
             {
@@ -81,7 +85,7 @@ namespace HomeworkLoops
 
             if (firstBoundaryRange > secondBoudaryRange)
             {
-                Helpers.SwapVariables<int>(ref firstBoundaryRange, ref secondBoudaryRange);
+                WorkWithVariables.Swap(ref firstBoundaryRange, ref secondBoudaryRange);
             }
 
             int sumOfRangeNumbersDividedBySeven = Calculations.GetSumOfRangeNumbersDividedBySeven(firstBoundaryRange, secondBoudaryRange);
@@ -96,7 +100,7 @@ namespace HomeworkLoops
         /// </summary>
         public void SolveSixthTask()
         {
-            int indexFibonacciSeries = Helpers.GetUserNumberIntPositive("Enter that number of Fibonacci series that you want to find out");
+            int indexFibonacciSeries = UserInputOutput.GetUserNumberIntPositive("Enter that number of Fibonacci series that you want to find out");
 
             int valueOfFibonacciSeries = Calculations.GetValueOfFibonacciSeries(indexFibonacciSeries);
 
@@ -109,8 +113,8 @@ namespace HomeworkLoops
         /// </summary>
         public void SolveSeventhTask()
         {
-            int firstNumber = Helpers.GetUserNumberInt("Enter the first number:");
-            int secondNumber = Helpers.GetUserNumberInt("Enter the second number:");
+            int firstNumber = UserInputOutput.GetUserNumberInt("Enter the first number:");
+            int secondNumber = UserInputOutput.GetUserNumberInt("Enter the second number:");
 
             if (firstNumber == secondNumber)
             {
@@ -129,7 +133,7 @@ namespace HomeworkLoops
         /// </summary>
         public void SolveEighthTask()
         {
-            int usersCubeNumber = Helpers.GetUserNumberIntPositive("Enter the positive number that's have be cube of some number:");
+            int usersCubeNumber = UserInputOutput.GetUserNumberIntPositive("Enter the positive number that's have be cube of some number:");
 
             int rootThirdDegree = Calculations.GetRootThirdDegreeByHalfDivision(usersCubeNumber);
 
@@ -144,7 +148,7 @@ namespace HomeworkLoops
         /// </summary>
         public void SolveNinthTask()
         {
-            int userTypedNumber = Helpers.GetUserNumberInt("Enter THE NUMBER:");
+            int userTypedNumber = UserInputOutput.GetUserNumberInt("Enter THE NUMBER:");
 
             int countOfOddDigits = Calculations.GetCountOfOddDigits(userTypedNumber);
 
@@ -157,7 +161,7 @@ namespace HomeworkLoops
         /// </summary>
         public void SolveTenthTask()
         {
-            int userTypedNumber = Helpers.GetUserNumberInt("Enter THE NUMBER:");
+            int userTypedNumber = UserInputOutput.GetUserNumberInt("Enter THE NUMBER:");
 
             int mirrorNumber = Calculations.GetMirrorNumber(userTypedNumber);
 
@@ -171,9 +175,12 @@ namespace HomeworkLoops
         /// </summary>
         public void SolveEleventhTask()
         {
-            int userTypedNumber = Helpers.GetUserNumberIntPositive("Enter boarder number to find numbers:");
+            int userTypedNumber = UserInputOutput.GetUserNumberIntPositive("Enter boarder number to find numbers:");
 
-            Helpers.PrintAllNumbersWhereSumEvenDigitsMoreThanOddDigits(userTypedNumber);
+            foreach (var number in Calculations.GetAllNumbersFrom1ToUserNumberWhereSumEvenDigitsMoreThanOddDigits(userTypedNumber))
+            {
+                Console.WriteLine(number);
+            }
         }
 
         /// <summary>
@@ -182,8 +189,8 @@ namespace HomeworkLoops
         /// </summary>
         public void SolveTwelvethTask()
         {
-            int firstUserNumber = Helpers.GetUserNumberInt("Enter the first number:");
-            int secondUserNumber = Helpers.GetUserNumberInt("Enter the second number:");
+            int firstUserNumber = UserInputOutput.GetUserNumberInt("Enter the first number:");
+            int secondUserNumber = UserInputOutput.GetUserNumberInt("Enter the second number:");
 
             if (Calculations.IsNumbersHaveSameDigits(firstUserNumber, secondUserNumber))
             {

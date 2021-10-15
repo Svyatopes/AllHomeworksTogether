@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HomeworkArrays
+namespace Core
 {
     public static class ArrayFunctions
     {
@@ -16,9 +16,7 @@ namespace HomeworkArrays
 
             if (startIndex > endIndex)
             {
-                int _ = startIndex;
-                startIndex = endIndex;
-                endIndex = _;
+                WorkWithVariables.Swap(ref startIndex, ref endIndex);
             }
         }
 
@@ -417,9 +415,7 @@ namespace HomeworkArrays
         {
             for (int i = 0; i < array.Length / 2; i++)
             {
-                int _ = array[i];
-                array[i] = array[array.Length - 1 - i];
-                array[array.Length - 1 - i] = _;
+                WorkWithVariables.Swap(ref array[i], ref array[array.Length - 1 - i]);
             }
         }
 
@@ -471,9 +467,7 @@ namespace HomeworkArrays
                 {
                     if (array[j] > array[j + 1])
                     {
-                        int _ = array[j];
-                        array[j] = array[j + 1];
-                        array[j + 1] = _;
+                        WorkWithVariables.Swap(ref array[j],ref array[j + 1]);
                     }
                 }
             }
@@ -491,9 +485,7 @@ namespace HomeworkArrays
                 int indexMaxElement = FindIndexOfMaxValue(array, i, array.Length - 1);
                 if (indexMaxElement != i)
                 {
-                    int _ = array[i];
-                    array[i] = array[indexMaxElement];
-                    array[indexMaxElement] = _;
+                    WorkWithVariables.Swap(ref array[i], ref array[indexMaxElement]);
                 }
             }
         }
@@ -554,9 +546,7 @@ namespace HomeworkArrays
             {
                 for (int j = i + 1; j < array.GetLength(1); j++)
                 {
-                    int _ = array[i, j];
-                    array[i, j] = array[j, i];
-                    array[j, i] = _;
+                    WorkWithVariables.Swap(ref array[i, j], ref array[j, i]);
                 }
             }
         }

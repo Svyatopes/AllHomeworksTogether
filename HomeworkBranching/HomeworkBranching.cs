@@ -1,4 +1,5 @@
 ﻿using System;
+using Core;
 
 namespace HomeworkBranching
 {
@@ -9,10 +10,10 @@ namespace HomeworkBranching
         /// </summary>
         public void SolveFirstTask()
         {
-            double numberA = Helpers.GetUserNumberDouble("Enter number A:");
-            double numberB = Helpers.GetUserNumberDouble("Enter number B:");
+            double numberA = UserInputOutput.GetUserNumberDouble("Enter number A:");
+            double numberB = UserInputOutput.GetUserNumberDouble("Enter number B:");
 
-            double calculationResult = Calculations.CalculateFirtsTask(numberA, numberB);
+            double calculationResult = Calculations.GetSumIfNumberAGraterOrMultiplicationIfEqualOrSubtractionIfLess(numberA, numberB);
 
             Console.WriteLine($"Calculation result is: {calculationResult}");
 
@@ -23,10 +24,10 @@ namespace HomeworkBranching
         /// </summary>
         public void SolveSecondTask()
         {
-            int xCoordinate = Helpers.GetUserNumberIntNotEqualZero("Enter X coordinate: ");
-            int yCoordinate = Helpers.GetUserNumberIntNotEqualZero("Enter Y coordinate:");
+            int xCoordinate = UserInputOutput.GetUserNumberIntNotEqualZero("Enter X coordinate: ");
+            int yCoordinate = UserInputOutput.GetUserNumberIntNotEqualZero("Enter Y coordinate:");
 
-            string quarterString = Helpers.GetStringOfQuarter(Calculations.GetQuarterOfPoint(xCoordinate, yCoordinate));
+            string quarterString = FromValuesToString.GetStringOfQuarter(Calculations.GetQuarterOfPoint(xCoordinate, yCoordinate));
             Console.WriteLine($"Your point is on {quarterString} quarter.");
         }
 
@@ -36,11 +37,11 @@ namespace HomeworkBranching
         /// </summary>
         public void SolveThirdTask()
         {
-            double numberA = Helpers.GetUserNumberDouble("Enter number A:");
-            double numberB = Helpers.GetUserNumberDouble("Enter number B:");
-            double numberC = Helpers.GetUserNumberDouble("Enter number C:");
+            double numberA = UserInputOutput.GetUserNumberDouble("Enter number A:");
+            double numberB = UserInputOutput.GetUserNumberDouble("Enter number B:");
+            double numberC = UserInputOutput.GetUserNumberDouble("Enter number C:");
 
-            string threeNumbersStringSortByAsc = Helpers.GetStringOfThreeNumberSortByAsc(numberA, numberB, numberC);
+            string threeNumbersStringSortByAsc = FromValuesToString.GetStringOfThreeNumberSortByAsc(numberA, numberB, numberC);
             Console.WriteLine($"This thee numbers sort by Ascending: {threeNumbersStringSortByAsc}");
         }
 
@@ -49,9 +50,9 @@ namespace HomeworkBranching
         /// </summary>
         public void SolveFourthTask()
         {
-            double numberA = Helpers.GetUserNumberDouble("Enter number A:");
-            double numberB = Helpers.GetUserNumberDouble("Enter number B:");
-            double numberC = Helpers.GetUserNumberDouble("Enter number C:");
+            double numberA = UserInputOutput.GetUserNumberDouble("Enter number A:");
+            double numberB = UserInputOutput.GetUserNumberDouble("Enter number B:");
+            double numberC = UserInputOutput.GetUserNumberDouble("Enter number C:");
 
             double[] roots = Calculations.GetRootsOfSquareFunction(numberA, numberB, numberC);
             
@@ -74,9 +75,9 @@ namespace HomeworkBranching
         /// </summary>
         public void SolveFifthTask()
         {
-            int numberToTranscription = Helpers.GetUserNumberIntWith2Digits("Enter 2-digits number:");
+            int numberToTranscription = UserInputOutput.GetUserNumberIntWith2Digits("Enter 2-digits number:");
 
-            string resultTranscriptionString = Helpers.GetTranscriptionOf2DigitsInt(numberToTranscription);
+            string resultTranscriptionString = FromValuesToString.GetTranscriptionOf2DigitsInt(numberToTranscription);
 
             Console.WriteLine($"Transcription of your digits is: {resultTranscriptionString}");
         }

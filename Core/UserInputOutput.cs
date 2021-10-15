@@ -4,10 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HomeworkVariables
+namespace Core
 {
-    public static class Helpers
+    public static class UserInputOutput
     {
+
+        public static string GetUserString(string message)
+        {
+            Console.WriteLine(message);
+            return Console.ReadLine();
+        }
+
         public static int GetUserNumberInt(string message)
         {
             bool validNumber;
@@ -23,6 +30,27 @@ namespace HomeworkVariables
                 }
             }
             while (!validNumber);
+            return userNumber;
+        }
+        public static int GetUserNumberIntPositive(string message)
+        {
+            int userNumber;
+            bool needReenterNumbers;
+            do
+            {
+                userNumber = GetUserNumberInt(message);
+                if (userNumber <= 0)
+                {
+                    Console.WriteLine("You have to write positive number. Please try again");
+                    needReenterNumbers = true;
+                }
+                else
+                {
+                    needReenterNumbers = false;
+                }
+
+            }
+            while (needReenterNumbers);
             return userNumber;
         }
 
@@ -47,6 +75,29 @@ namespace HomeworkVariables
             while (needReenterNumbers);
             return userNumber;
         }
+
+        public static int GetUserNumberIntWith2Digits(string message)
+        {
+            bool needReenterNumbers;
+            int userNumberWith2Digits;
+            do
+            {
+                userNumberWith2Digits = GetUserNumberInt("Enter 2-digits number:");
+
+                if (userNumberWith2Digits > 99 || userNumberWith2Digits < 10)
+                {
+                    Console.WriteLine("This number is not valid.");
+                    needReenterNumbers = true;
+                }
+                else
+                {
+                    needReenterNumbers = false;
+                }
+            }
+            while (needReenterNumbers);
+            return userNumberWith2Digits;
+        }
+
 
         public static double GetUserNumberDouble(string message)
         {
@@ -91,17 +142,7 @@ namespace HomeworkVariables
 
 
 
-        public static string GetUserString(string message)
-        {
-            Console.WriteLine(message);
-            return Console.ReadLine();
-        }
 
-        public static void SwapVariables<T>(ref T firstVariable, ref T secondVariable)
-        {
-            T _ = firstVariable;
-            firstVariable = secondVariable;
-            secondVariable = _;
-        }
+        
     }
 }

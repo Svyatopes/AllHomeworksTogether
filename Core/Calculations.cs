@@ -1,13 +1,68 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace HomeworkLoops
+namespace Core
 {
     public static class Calculations
     {
+        public static int GetQuarterOfPoint(int xCoordinate, int yCoordinate)
+        {
+            if (xCoordinate > 0)
+            {
+                if (yCoordinate > 0)
+                {
+                    return 1;
+                }
+
+                return 4;
+            }
+
+            if (yCoordinate > 0)
+            {
+
+                return 2;
+            }
+
+            return 3;
+        }
+
+        public static double[] GetRootsOfSquareFunction(double argumentA, double argumentB, double argumentC)
+        {
+            double discriminant = Math.Pow(argumentB, 2) - 4 * argumentA * argumentC;
+
+            if (discriminant > 0)
+            {
+                double firstRoot = (-argumentB + Math.Sqrt(discriminant)) / (2 * argumentA);
+                double secondRoot = (-argumentB - Math.Sqrt(discriminant)) / (2 * argumentA);
+                return new double[] { firstRoot, secondRoot };
+            }
+            else if (discriminant == 0)
+            {
+                double root = (-argumentB) / (2 * argumentA);
+                return new double[] { root };
+            }
+            else
+            {
+                return new double[] { };
+            }
+        }
+
+        public static double GetSumIfNumberAGraterOrMultiplicationIfEqualOrSubtractionIfLess(double numberA, double numberB)
+        {
+            if (numberA > numberB)
+            {
+                return numberA + numberB;
+            }
+            else if (numberA == numberB)
+            {
+                return numberA * numberB;
+            }
+            else
+            {
+                return numberA - numberB;
+            }
+        }
+
         public static int PowInt(int numberToPower, int power)
         {
             int resultOfPower = numberToPower;
@@ -110,7 +165,7 @@ namespace HomeworkLoops
                     greaterNumber %= smallerNumber;
                     if (greaterNumber < smallerNumber)
                     {
-                        Helpers.SwapVariables<int>(ref greaterNumber, ref smallerNumber);
+                        WorkWithVariables.Swap<int>(ref greaterNumber, ref smallerNumber);
                     }
                 }
 
@@ -203,5 +258,90 @@ namespace HomeworkLoops
             return false;
         }
 
+        public static int Divide(int firstNumber, int secondNumber)
+        {
+            return firstNumber / secondNumber;
+        }
+
+        public static int GetRemainderOfDivide(int firstNumber, int secondNumber)
+        {
+            return firstNumber % secondNumber;
+        }
+
+        public static double CalculateLinearFunction(double numberA, double numberB, double numberC)
+        {
+            return (numberC - numberB) / numberA;
+        }
+
+        public static string GetLinearFunctionStringBy2Points(double firstPointX, double firstPointY, double secondPointX, double secondPointY)
+        {
+            double argumentX = (secondPointY - firstPointY) / (secondPointX - firstPointX);
+            double freeMember = secondPointY - argumentX * secondPointX;
+
+            if (freeMember > 0)
+                return $"Y = {argumentX}*X + {freeMember}";
+            else
+            if (freeMember == 0)
+                return $"Y = {argumentX}*X";
+            else
+                return $"Y = {argumentX}*X - {Math.Abs(freeMember)}";
+        }
+
+        /// <summary>
+        /// Calculate function: (5 * numberA + numberB^2) / (numberB - numberA)
+        /// </summary>
+        /// <returns>Calculation result</returns>
+        public static double CalculateOurTheGreatestFunction(double numberA, double numberB)
+        {
+            if (numberA == numberB)
+            {
+                throw new DivideByZeroException("You cannot enter same numbers for this function");
+            }
+
+            double calculationResult = (5 * numberA + Math.Pow(numberB, 2)) / (numberB - numberA);
+            return calculationResult;
+        }
+
+
+        public static IEnumerable<int> GetAllNumbersFrom1To1000Divided(int divider)
+        {
+            for (int i = 1; i <= 1000; i++)
+            {
+                if (i % divider == 0)
+                {
+                    yield return i;
+                }
+            }
+        }
+
+
+
+        public static IEnumerable<int> GetAllNumbersFrom1ToUserNumberWhereSumEvenDigitsMoreThanOddDigits(int userTypedNumber)
+        {
+            for (int i = 1; i <= userTypedNumber; i++)
+            {
+
+                int sumEvenDigits = 0;
+                int sumOddDigits = 0;
+
+                int croppedIndexNumber = i;
+                do
+                {
+                    int lastDigit = croppedIndexNumber % 10;
+                    if (lastDigit % 2 == 0)
+                    {
+                        sumEvenDigits += lastDigit;
+                    }
+                    else
+                    {
+                        sumOddDigits += lastDigit;
+                    }
+                }
+                while ((croppedIndexNumber /= 10) != 0);
+
+                if (sumEvenDigits > sumOddDigits)
+                    yield return i;
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using Core;
 
 namespace HomeworkVariables
 {
@@ -12,8 +13,8 @@ namespace HomeworkVariables
             bool needReenterNumbers;
             do
             {
-                numberA = Helpers.GetUserNumberDouble("Enter the First number(A):");
-                numberB = Helpers.GetUserNumberDouble("Enter the Second number (B):");
+                numberA = UserInputOutput.GetUserNumberDouble("Enter the First number(A):");
+                numberB = UserInputOutput.GetUserNumberDouble("Enter the Second number (B):");
                 if (numberA == numberB)
                 {
                     Console.WriteLine("You have writed the same numbers. Please try again");
@@ -27,7 +28,7 @@ namespace HomeworkVariables
             }
             while (needReenterNumbers);
 
-            double calculationResult = Calculations.CalculateFirstTask(numberA, numberB);
+            double calculationResult = Calculations.CalculateOurTheGreatestFunction(numberA, numberB);
 
             Console.WriteLine($"Calculation result is: {calculationResult}");
         }
@@ -36,10 +37,10 @@ namespace HomeworkVariables
         //Пользователь вводит 2 строковых значения(A и B). Поменяйте содержимое переменных A и B местами.
         public void SolveSecondTask()
         {
-            string firstString = Helpers.GetUserString("Enter the First string:");
-            string secondString = Helpers.GetUserString("Enter the Second string:");
+            string firstString = UserInputOutput.GetUserString("Enter the First string:");
+            string secondString = UserInputOutput.GetUserString("Enter the Second string:");
 
-            Helpers.SwapVariables<string>(ref firstString, ref secondString);
+            WorkWithVariables.Swap(ref firstString, ref secondString);
 
             Console.WriteLine($"Now first string become: \"{firstString}\" ; and the second one is \"{secondString}\"");
         }
@@ -49,8 +50,8 @@ namespace HomeworkVariables
         //Пользователь вводит 2 числа(A и B).Выведите в консоль результат деления A на B и остаток от деления.
         public void SolveThirdTask()
         {
-            int numberA = Helpers.GetUserNumberInt("Enter the First number(A):");
-            int numberB = Helpers.GetUserNumberIntNotEqualZero("Enter the Second number(B):");
+            int numberA = UserInputOutput.GetUserNumberInt("Enter the First number(A):");
+            int numberB = UserInputOutput.GetUserNumberIntNotEqualZero("Enter the Second number(B):");
 
             int divisionResult = Calculations.Divide(numberA, numberB);
             int remainder = Calculations.GetRemainderOfDivide(numberA, numberB);
@@ -61,9 +62,9 @@ namespace HomeworkVariables
         //Пользователь вводит 3 не равных 0 числа(A, B и С).Выведите в консоль решение(значение X) линейного уравнения стандартного вида, где A* X+B = C.       
         public void SolveFourthTask()
         {
-            double numberA = Helpers.GetUserNumberDoubleNotEqualZero("Enter the First number (A):");
-            double numberB = Helpers.GetUserNumberDoubleNotEqualZero("Enter the Second number (B):");
-            double numberC = Helpers.GetUserNumberDoubleNotEqualZero("Enter the Third number (C):");
+            double numberA = UserInputOutput.GetUserNumberDoubleNotEqualZero("Enter the First number (A):");
+            double numberB = UserInputOutput.GetUserNumberDoubleNotEqualZero("Enter the Second number (B):");
+            double numberC = UserInputOutput.GetUserNumberDoubleNotEqualZero("Enter the Third number (C):");
 
             double calculationResult = Calculations.CalculateLinearFunction(numberA, numberB, numberC);
             Console.WriteLine($"The X for this linear function is: {calculationResult}");
@@ -83,11 +84,11 @@ namespace HomeworkVariables
 
             do
             {
-                firstPointX = Helpers.GetUserNumberDouble("Enter the X coordinate for first point:");
-                firstPointY = Helpers.GetUserNumberDouble("Enter the Y coordinate for first point:");
+                firstPointX = UserInputOutput.GetUserNumberDouble("Enter the X coordinate for first point:");
+                firstPointY = UserInputOutput.GetUserNumberDouble("Enter the Y coordinate for first point:");
 
-                secondPointX = Helpers.GetUserNumberDouble("Enter the X coordinate for second point:");
-                secondPointY = Helpers.GetUserNumberDouble("Enter the Y coordinate for second point:");
+                secondPointX = UserInputOutput.GetUserNumberDouble("Enter the X coordinate for second point:");
+                secondPointY = UserInputOutput.GetUserNumberDouble("Enter the Y coordinate for second point:");
 
                 if (firstPointX == secondPointX || firstPointY == secondPointY)
                 {
