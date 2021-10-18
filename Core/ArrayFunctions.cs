@@ -448,9 +448,7 @@ namespace Core
             int startRightPart = array.Length / 2 + array.Length % 2;
             for (int i = 0; i < array.Length / 2; i++)
             {
-                int _ = array[i];
-                array[i] = array[startRightPart + i];
-                array[startRightPart + i] = _;
+                WorkWithVariables.Swap(ref array[i], ref array[startRightPart + i]);
             }
         }
 

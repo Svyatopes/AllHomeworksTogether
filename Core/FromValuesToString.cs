@@ -114,5 +114,16 @@ namespace Core
             resultTranscriptionString = $"{secondDigitTranscription} {firstDigitTranscription}".Trim();
             return resultTranscriptionString;
         }
+
+
+        public static string GetLinearFunctionStringByFreeMemberAndArgumentX(double freeMember, double argumentX)
+        {
+            if (freeMember > 0)
+                return $"Y = {argumentX}*X + {freeMember}";
+            else if (freeMember == 0)
+                return $"Y = {argumentX}*X";
+            else
+                return $"Y = {argumentX}*X - {Math.Abs(freeMember)}";
+        }
     }
 }

@@ -14,5 +14,16 @@ namespace Core
             firstVariable = secondVariable;
             secondVariable = _;
         }
+
+        public static void ChangeSign(ref int variable)
+        {
+            variable = -variable;
+        }
+
+        public static void MakePositive(ref int variable)
+        {
+            if (variable < 0)
+                ChangeSign(ref variable);
+        }
     }
 }

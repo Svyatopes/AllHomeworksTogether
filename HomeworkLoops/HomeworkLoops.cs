@@ -83,11 +83,6 @@ namespace HomeworkLoops
                 }
             }
 
-            if (firstBoundaryRange > secondBoudaryRange)
-            {
-                WorkWithVariables.Swap(ref firstBoundaryRange, ref secondBoudaryRange);
-            }
-
             int sumOfRangeNumbersDividedBySeven = Calculations.GetSumOfRangeNumbersDividedBySeven(firstBoundaryRange, secondBoudaryRange);
             Console.WriteLine($"The sum of the numbers in this range, which are divisible by 7 " +
                 $" without remainder is: {sumOfRangeNumbersDividedBySeven}");

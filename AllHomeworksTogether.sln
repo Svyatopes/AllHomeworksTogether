@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeworkLoops", "HomeworkLo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeworkArrays", "HomeworkArrays\HomeworkArrays.csproj", "{93BB0BB5-A2D7-4FEF-BDEF-13B24BC98688}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{CC3BAEAD-32BF-4916-B0AE-A37DCB6445D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{CC3BAEAD-32BF-4916-B0AE-A37DCB6445D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Tests", "Core.Tests\Core.Tests.csproj", "{FA782CC2-38A2-4D75-B376-A96932E315DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{CC3BAEAD-32BF-4916-B0AE-A37DCB6445D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC3BAEAD-32BF-4916-B0AE-A37DCB6445D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC3BAEAD-32BF-4916-B0AE-A37DCB6445D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA782CC2-38A2-4D75-B376-A96932E315DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA782CC2-38A2-4D75-B376-A96932E315DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA782CC2-38A2-4D75-B376-A96932E315DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA782CC2-38A2-4D75-B376-A96932E315DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
