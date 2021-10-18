@@ -20,7 +20,7 @@ namespace Core.Tests
             };
         }
 
-        public static List<int> GetExpectedListForGetAllNumbersFrom1ToUserNumberWhereSumEvenDigitsMoreThanOddDigitsTest(int enteredNumber)
+        public static List<int> GetExpecForGetAllNumbersWhereSumEvenDigitsMoreThanOddDigitsTest(int enteredNumber)
         {
             return enteredNumber switch
             {

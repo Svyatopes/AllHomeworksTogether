@@ -495,7 +495,7 @@ namespace Core.Tests
         public void GetAllNumbersFrom1ToUserNumberWhereSumEvenDigitsMoreThanOddDigitsTest(int userNumber)
         {
             //arrange
-            var expected = TestData.GetExpectedListForGetAllNumbersFrom1ToUserNumberWhereSumEvenDigitsMoreThanOddDigitsTest(userNumber);
+            var expected = TestData.GetExpecForGetAllNumbersWhereSumEvenDigitsMoreThanOddDigitsTest(userNumber);
 
             //act
             var actualResult = Calculations.GetAllNumbersFrom1ToUserNumberWhereSumEvenDigitsMoreThanOddDigits(userNumber).ToList();
