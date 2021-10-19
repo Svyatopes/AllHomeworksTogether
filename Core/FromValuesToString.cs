@@ -58,11 +58,15 @@ namespace Core
 
         public static string GetTranscriptionOf2DigitsInt(int numberToTranscription)
         {
+            if (numberToTranscription < 10 || numberToTranscription > 99)
+                throw new ArgumentException("Value can be only with 2 digits");
+
             string resultTranscriptionString;
             if (numberToTranscription < 20)
             {
                 resultTranscriptionString = numberToTranscription switch
                 {
+                    10 => "Десять",
                     11 => "Одиннадцать",
                     12 => "Двенадцать",
                     13 => "Тринадцать",
@@ -71,7 +75,7 @@ namespace Core
                     16 => "Шестнадцать",
                     17 => "Семнадцать",
                     18 => "Восемнадцать",
-                    19 => "Девятнцать",
+                    19 => "Девятнадцать",
                     _ => "Not valid number, something get wrong."
                 };
                 return resultTranscriptionString;
