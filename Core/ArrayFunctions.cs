@@ -430,7 +430,7 @@ namespace Core
             int countOfOddElements = 0;
             foreach (var elem in array)
             {
-                if (elem % 2 == 1)
+                if (Math.Abs(elem % 2) == 1)
                 {
                     countOfOddElements++;
                 }
@@ -465,7 +465,7 @@ namespace Core
                 {
                     if (array[j] > array[j + 1])
                     {
-                        WorkWithVariables.Swap(ref array[j],ref array[j + 1]);
+                        WorkWithVariables.Swap(ref array[j], ref array[j + 1]);
                     }
                 }
             }
@@ -524,7 +524,7 @@ namespace Core
                     countElementsGreaterNeighbours++;
 
                     //for debug
-                    Console.WriteLine($"value: {array[i, j]} index: ({i},{j})");
+                    // Console.WriteLine($"value: {array[i, j]} index: ({i},{j})");
 
 
                 }
