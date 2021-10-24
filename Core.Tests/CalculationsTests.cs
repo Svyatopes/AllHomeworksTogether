@@ -74,8 +74,8 @@ namespace Core.Tests
         [TestCase(0, 10, 0)]
         [TestCase(1, 0, 1)]
         [TestCase(100, 0, 1)]
-
-
+        [TestCase(-10, 3, -1000)]
+        [TestCase(10, 2, 100)]
         public void PowIntTest(int numberToPower, int power, int expected)
         {
             // arrange
@@ -307,6 +307,8 @@ namespace Core.Tests
         [TestCase(-100, 2, false)]
         [TestCase(-100, 0, true)]
         [TestCase(-102, 0, true)]
+        [TestCase(0, 100, true)]
+        [TestCase(4896, 1381, true)]
         public void IsNumbersHaveSameDigitsTest(int firstNumber, int secondNumber, bool expected)
         {
             //arrange
