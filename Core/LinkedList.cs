@@ -9,25 +9,35 @@ namespace Core
     public class LinkedList
     {
         private Node _head;
-        private Node _tail;
+
+
+        private Node GetLastNode()
+        {
+            if (_head == null)
+                return null;
+            Node currentNode = _head;
+            while (currentNode.Next != null)
+            {
+                currentNode = currentNode.Next;
+            }
+            return currentNode;
+        }
+
 
         public LinkedList()
         {
             _head = null;
-            _tail = null;
         }
 
         public LinkedList(int value)
         {
             var node = new Node { Value = value };
             _head = node;
-            _tail = node;
         }
 
         public LinkedList(int[] array)
         {
             _head = null;
-            _tail = null;
 
             if (array.Length == 0)
             {
@@ -42,7 +52,6 @@ namespace Core
                 current = new Node { Value = array[i] };
                 previous.Next = current;
             }
-            _tail = current;
         }
 
         public int GetLength()
@@ -118,13 +127,10 @@ namespace Core
             if (_head == null)
             {
                 _head = node;
-                _tail = node;
+                return;
             }
-            else
-            {
-                _tail.Next = node;
-                _tail = node;
-            }
+            Node last = GetLastNode();
+            last.Next = node;
         }
 
         public void AddLast(LinkedList list)
@@ -137,13 +143,11 @@ namespace Core
             if (_head == null)
             {
                 _head = headNewChain;
-                _tail = tailNewChain;
+                return;
             }
-            else
-            {
-                _tail.Next = headNewChain;
-                _tail = tailNewChain;
-            }
+
+            Node last = GetLastNode();
+            last.Next = headNewChain;
 
         }
 
@@ -153,10 +157,6 @@ namespace Core
             {
                 Node node = new Node { Value = value, Next = _head };
                 _head = node;
-                if (_tail == null)
-                {
-                    _tail = node;
-                }
                 return;
             }
 
@@ -179,10 +179,6 @@ namespace Core
             }
 
             Node nodeToAdd = new Node() { Value = value, Next = currentElement.Next };
-            if (currentElement.Next == null)
-            {
-                _tail = nodeToAdd;
-            }
             currentElement.Next = nodeToAdd;
 
         }
@@ -226,14 +222,11 @@ namespace Core
 
             Node currentElement = GetPreviousNodeByIndex(index);
 
-            if (currentElement.Next == null)
-            {
-                _tail = tailNewChain;
-            }
-            else
+            if (currentElement.Next != null)
             {
                 tailNewChain.Next = currentElement.Next;
             }
+
             currentElement.Next = headNewChain;
 
         }
@@ -282,7 +275,6 @@ namespace Core
             if (_head.Next == null)
             {
                 _head = null;
-                _tail = null;
                 return;
             }
 
@@ -293,7 +285,6 @@ namespace Core
             }
 
             current.Next = null;
-            _tail = current;
         }
 
         public void RemoveAt(int index)
@@ -314,11 +305,6 @@ namespace Core
             if (currentElement.Next == null)
             {
                 throw new IndexOutOfRangeException();
-            }
-
-            if (currentElement.Next.Next == null)
-            {
-                _tail = currentElement;
             }
 
             currentElement.Next = currentElement.Next.Next;
@@ -344,10 +330,6 @@ namespace Core
             var previousElem = GetPreviousNodeByIndex(count);
 
             _head = previousElem.Next;
-            if (_head == null)
-            {
-                _tail = null;
-            }
 
         }
 
@@ -377,14 +359,12 @@ namespace Core
             if (count == currentLength)
             {
                 _head = null;
-                _tail = null;
                 return;
             }
 
             Node nodeToRemoveLink = GetPreviousNodeByIndex(currentLength - count);
 
             nodeToRemoveLink.Next = null;
-            _tail = nodeToRemoveLink;
 
         }
 
@@ -437,10 +417,7 @@ namespace Core
             }
 
             nodeToReplaceLink.Next = currentElement.Next;
-            if (nodeToReplaceLink.Next == null)
-            {
-                _tail = nodeToReplaceLink;
-            }
+           
         }
 
         public int RemoveFirst(int value)
@@ -464,18 +441,10 @@ namespace Core
             if (indexToRemove == 0)
             {
                 _head = _head.Next;
-                if (_head == null)
-                {
-                    _tail = _head;
-                }
                 return 0;
             }
 
             previousNode.Next = previousNode.Next.Next;
-            if (previousNode.Next == null)
-            {
-                _tail = previousNode;
-            }
             return indexToRemove;
         }
 
@@ -521,8 +490,6 @@ namespace Core
 
             }
 
-            _tail = _head == null ? null : newTail;
-
             return removedCount;
         }
 
@@ -567,7 +534,7 @@ namespace Core
             if (_head == null)
                 throw new IndexOutOfRangeException();
 
-            return _tail.Value;
+            return GetLastNode().Value;
         }
 
         public int Get(int index)
@@ -610,7 +577,6 @@ namespace Core
             }
 
             _head.Next = null;
-            _tail = _head;
             _head = previousNode;
         }
 
