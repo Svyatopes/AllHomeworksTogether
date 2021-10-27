@@ -527,6 +527,11 @@ namespace Core.Tests
                 0 => new ArrayList(new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }),
                 1 => new ArrayList(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 }),
                 2 => new ArrayList(new int[] { 1, 2, 3, 4 }),
+                3 => new ArrayList(new int[] { 1, 2, 3, 4 }),
+                4 => new ArrayList(new int[] { 1, 2, 3, 4 }),
+                5 => new ArrayList(new int[] { 1, 2 }),
+                6 => new ArrayList(1),
+                7 => new ArrayList(),
                 _ => throw new NotImplementedException()
             };
         }
@@ -538,6 +543,11 @@ namespace Core.Tests
                 0 => 4,
                 1 => 11,
                 2 => 5,
+                3 => 1,
+                4 => 2,
+                5 => 2,
+                6 => 1,
+                7 => 10,
                 _ => throw new NotImplementedException()
             };
         }
@@ -549,6 +559,11 @@ namespace Core.Tests
                 0 => (new ArrayList(new int[] { 0, 1, 2, 3, 5, 6, 7, 8, 9 }), 4),
                 1 => (new ArrayList(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }), 10),
                 2 => (new ArrayList(new int[] { 1, 2, 3, 4 }), -1),
+                3 => (new ArrayList(new int[] { 2, 3, 4 }), 0),
+                4 => (new ArrayList(new int[] { 1, 3, 4 }), 1),
+                5 => (new ArrayList(1), 1),
+                6 => (new ArrayList(), 0),
+                7 => (new ArrayList(), -1),
                 _ => throw new NotImplementedException()
             };
         }
@@ -564,6 +579,9 @@ namespace Core.Tests
                 3 => new ArrayList(new int[] { 5, 5, 5, 5, 7, 5, 5, 5 }),
                 4 => new ArrayList(new int[] { 2, 9, 4, 2, 3, 6, 2, 10, 80 }),
                 5 => new ArrayList(),
+                6 => new ArrayList(new int[] { 5, 5, 5, 7, 5, 5, 5, 7, 5, 5, 5, 7 }),
+                7 => new ArrayList(new int[] { 5, 5, 5, 7, 5, 5, 5, 7, 5, 5, 5, 7, 5, 5, 5 }),
+                8 => new ArrayList(new int[] { 7, 5, 5, 5, 7, 5, 5, 5, 7, 5, 5, 5, 7 }),
                 _ => throw new NotImplementedException()
             };
         }
@@ -578,6 +596,9 @@ namespace Core.Tests
                 3 => 7,
                 4 => 2,
                 5 => 10,
+                6 => 5,
+                7 => 5,
+                8 => 5,
                 _ => throw new NotImplementedException()
             };
         }
@@ -592,6 +613,9 @@ namespace Core.Tests
                 3 => (new ArrayList(new int[] { 5, 5, 5, 5, 5, 5, 5 }), 1),
                 4 => (new ArrayList(new int[] { 9, 4, 3, 6, 10, 80 }), 3),
                 5 => (new ArrayList(), 0),
+                6 => (new ArrayList(new int[] { 7, 7, 7 }), 9),
+                7 => (new ArrayList(new int[] { 7, 7, 7 }), 12),
+                8 => (new ArrayList(new int[] { 7, 7, 7, 7 }), 9),
                 _ => throw new NotImplementedException()
             };
         }

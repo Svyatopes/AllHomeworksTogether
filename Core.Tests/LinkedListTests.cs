@@ -1,21 +1,15 @@
 ﻿using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Tests
 {
-    public class ArrayListTests
+    public class LinkedListTests
     {
-
 
         [SetUp]
         public void Setup()
         {
         }
-
 
         [TestCase(new int[] { 3, 4, 7, 8 }, new int[] { 3, 4, 7, 8 })]
         [TestCase(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 }, new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 })]
@@ -24,7 +18,7 @@ namespace Core.Tests
         public void ToArrayTest(int[] userArray, int[] expected)
         {
             //arrange
-            ArrayList list = new ArrayList(userArray);
+            LinkedList list = new LinkedList(userArray);
 
 
             //act
@@ -42,35 +36,37 @@ namespace Core.Tests
         public void AddFirstIntTest(int index)
         {
             //arrange
-            ArrayList list = TestDataArrayList.GetArrayListForAddFirstInt(index);
-            ArrayList expected = TestDataArrayList.GetExpectedArrayListForAddFirstInt(index);
+            LinkedList list = TestDataLinkedList.GetLinkedListForAddFirstInt(index);
+            LinkedList expected = TestDataLinkedList.GetExpectedLinkedListForAddFirstInt(index);
 
             //act
-            list.AddFirst(TestDataArrayList.GetIntToAddForAddFirstInt(index));
+            list.AddFirst(TestDataLinkedList.GetIntToAddForAddFirstInt(index));
+
 
             //assert
 
-            Assert.AreEqual(expected, list);
+            Assert.AreEqual(expected.ToArray(), list.ToArray());
         }
+
 
         [TestCase(0)]
         [TestCase(1)]
         [TestCase(2)]
         [TestCase(3)]
         [TestCase(4)]
-        public void AddFirstArrayListTest(int index)
+        public void AddFirstLinkedListTest(int index)
         {
             //arrange
-            ArrayList list = TestDataArrayList.GetArrayListForAddFirstArrayList(index);
-            ArrayList listToAddFirst = TestDataArrayList.GetArrayListToAddForAddFirstArrayList(index);
-            ArrayList expected = TestDataArrayList.GetExpectedArrayListForAddFirstArrayList(index);
+            LinkedList list = TestDataLinkedList.GetLinkedListForAddFirstLinkedList(index);
+            LinkedList listToAddFirst = TestDataLinkedList.GetLinkedListToAddForAddFirstLinkedList(index);
+            LinkedList expected = TestDataLinkedList.GetExpectedLinkedListForAddFirstLinkedList(index);
 
             //act
             list.AddFirst(listToAddFirst);
 
             //assert
 
-            Assert.AreEqual(expected, list);
+            Assert.AreEqual(expected.ToArray(), list.ToArray());
         }
 
 
@@ -81,15 +77,36 @@ namespace Core.Tests
         public void AddLastIntTest(int index)
         {
             //arrange
-            ArrayList list = TestDataArrayList.GetArrayListForAddLastInt(index);
-            ArrayList expected = TestDataArrayList.GetExpectedArrayListForAddLastInt(index);
+            LinkedList list = TestDataLinkedList.GetLinkedListForAddLastInt(index);
+            LinkedList expected = TestDataLinkedList.GetExpectedLinkedListForAddLastInt(index);
 
             //act
-            list.AddLast(TestDataArrayList.GetIntToAddForAddLastInt(index));
+            list.AddLast(TestDataLinkedList.GetIntToAddForAddLastInt(index));
 
             //assert
 
-            Assert.AreEqual(expected, list);
+            Assert.AreEqual(expected.ToArray(), list.ToArray());
+        }
+
+
+        [TestCase(0)]
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
+        [TestCase(4)]
+        public void AddLastLinkedListTest(int index)
+        {
+            //arrange
+            LinkedList list = TestDataLinkedList.GetLinkedListForAddLastLinkedList(index);
+            LinkedList listToAddFirst = TestDataLinkedList.GetLinkedListToAddForAddLastLinkedList(index);
+            LinkedList expected = TestDataLinkedList.GetExpectedLinkedListForAddLastLinkedList(index);
+
+            //act
+            list.AddLast(listToAddFirst);
+
+            //assert
+
+            Assert.AreEqual(expected.ToArray(), list.ToArray());
         }
 
         [TestCase(0)]
@@ -97,49 +114,31 @@ namespace Core.Tests
         [TestCase(2)]
         [TestCase(3)]
         [TestCase(4)]
-        public void AddLastArrayListTest(int index)
-        {
-            //arrange
-            ArrayList list = TestDataArrayList.GetArrayListForAddLastArrayList(index);
-            ArrayList listToAddFirst = TestDataArrayList.GetArrayListToAddForAddLastArrayList(index);
-            ArrayList expected = TestDataArrayList.GetExpectedArrayListForAddLastArrayList(index);
-
-            //act
-            list.AddLast(listToAddFirst);
-
-            //assert
-
-            Assert.AreEqual(expected, list);
-        }
-
-        [TestCase(0)]
-        [TestCase(1)]
-        [TestCase(2)]
-        [TestCase(3)]
         public void AddAtIntTest(int index)
         {
             //arrange
-            ArrayList list = TestDataArrayList.GetArrayListForAddAtInt(index);
-            (int indexToAdd, int value) = TestDataArrayList.GetIndexAndValueToAddForAddAtInt(index);
-            ArrayList expected = TestDataArrayList.GetExpectedArrayListForAddAtInt(index);
+            LinkedList list = TestDataLinkedList.GetLinkedListForAddAtInt(index);
+            (int indexToAdd, int value) = TestDataLinkedList.GetIndexAndValueToAddForAddAtInt(index);
+            LinkedList expected = TestDataLinkedList.GetExpectedLinkedListForAddAtInt(index);
 
             //act
             list.AddAt(indexToAdd, value);
 
             //assert
 
-            Assert.AreEqual(expected, list);
+            Assert.AreEqual(expected.ToArray(), list.ToArray());
         }
 
 
-        [TestCase(0, 4, 0)]
-        [TestCase(1, 1, 1)]
-        [TestCase(2, 2, 10)]
-        [TestCase(3, -1, 10)]
-        public void AddAtIntTestNegative(int indexArrayList, int indexToAdd, int value)
+        [TestCase(new int[] { 1, 2, 3 }, 4, 0)]
+        [TestCase(new int[] { }, 1, 1)]
+        [TestCase(new int[] { 5 }, 2, 10)]
+        [TestCase(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, -1, 10)]
+        [TestCase(new int[] { 1, 2, 3 }, 500, 10)]
+        public void AddAtIntTestNegative(int[] arrayToMakeLinkedList, int indexToAdd, int value)
         {
             //arrange
-            ArrayList list = TestDataArrayList.GetArrayListForAddAtInt(indexArrayList);
+            LinkedList list = new LinkedList(arrayToMakeLinkedList);
 
             //act assert
             IndexOutOfRangeException ex = Assert.Throws<IndexOutOfRangeException>(() => list.AddAt(indexToAdd, value));
@@ -152,35 +151,34 @@ namespace Core.Tests
         [TestCase(3)]
         [TestCase(4)]
         [TestCase(5)]
-        public void AddAtArrayListTest(int index)
+        public void AddAtLinkedListTest(int index)
         {
             //arrange
-            ArrayList list = TestDataArrayList.GetArrayListForAddAtArrayList(index);
-            (int indexAtAdd, ArrayList listToAdd) = TestDataArrayList.GetIndexAndArrayListToAddForAddAtArrayList(index);
-            ArrayList expected = TestDataArrayList.GetExpectedArrayListForAddAtArrayList(index);
+            LinkedList list = TestDataLinkedList.GetLinkedListForAddAtLinkedList(index);
+            (int indexAtAdd, LinkedList listToAdd) = TestDataLinkedList.GetIndexAndLinkedListToAddForAddAtLinkedList(index);
+            LinkedList expected = TestDataLinkedList.GetExpectedLinkedListForAddAtLinkedList(index);
 
             //act
             list.AddAt(indexAtAdd, listToAdd);
 
             //assert
 
-            Assert.AreEqual(expected, list);
+            Assert.AreEqual(expected.ToArray(), list.ToArray());
         }
 
         [TestCase(0, 4)]
         [TestCase(1, 1)]
         [TestCase(2, 2)]
         [TestCase(3, -1)]
-        public void AddAtArrayListTestNegative(int indexArrayList, int indexToAdd)
+        public void AddAtLinkedListTestNegative(int indexLinkedList, int indexToAdd)
         {
             //arrange
-            ArrayList list = TestDataArrayList.GetArrayListForAddAtArrayListTestNegative(indexArrayList);
-            ArrayList addList = new ArrayList(5);
+            LinkedList list = TestDataLinkedList.GetLinkedListForAddAtLinkedListTestNegative(indexLinkedList);
+            LinkedList addList = new LinkedList(5);
 
             //act assert
             IndexOutOfRangeException ex = Assert.Throws<IndexOutOfRangeException>(() => list.AddAt(indexToAdd, addList));
         }
-
 
         [TestCase(0)]
         [TestCase(1)]
@@ -189,25 +187,25 @@ namespace Core.Tests
         public void SetTest(int index)
         {
             //arrange
-            ArrayList list = TestDataArrayList.GetArrayListForSetTest(index);
-            (int indexAtAdd, int listToAdd) = TestDataArrayList.GetIndexAndValueForSetTest(index);
-            ArrayList expected = TestDataArrayList.GetExpectedArrayListForSetTest(index);
+            LinkedList list = TestDataLinkedList.GetLinkedListForSetTest(index);
+            (int indexAtAdd, int listToAdd) = TestDataLinkedList.GetIndexAndValueForSetTest(index);
+            LinkedList expected = TestDataLinkedList.GetExpectedLinkedListForSetTest(index);
 
             //act
             list.Set(indexAtAdd, listToAdd);
 
             //assert
 
-            Assert.AreEqual(expected, list);
+            Assert.AreEqual(expected.ToArray(), list.ToArray());
         }
 
         [TestCase(0, 3)]
         [TestCase(1, 0)]
         [TestCase(2, -1)]
-        public void SetTestNegative(int indexArrayList, int indexToAdd)
+        public void SetTestNegative(int indexLinkedList, int indexToAdd)
         {
             //arrange
-            ArrayList list = TestDataArrayList.GetArrayListForSetTestNegative(indexArrayList);
+            LinkedList list = TestDataLinkedList.GetLinkedListForAddAtLinkedListTestNegative(indexLinkedList);
             int value = 5;
 
             //act assert
@@ -217,19 +215,18 @@ namespace Core.Tests
         [TestCase(0)]
         [TestCase(1)]
         [TestCase(2)]
-        [TestCase(3)]
         public void RemoveFirstTest(int index)
         {
             //arrange
-            ArrayList list = TestDataArrayList.GetArrayListForRemoveFirstTest(index);
-            ArrayList expected = TestDataArrayList.GetExpectedArrayListForRemoveFirstTest(index);
+            LinkedList list = TestDataLinkedList.GetLinkedListForRemoveFirstTest(index);
+            LinkedList expected = TestDataLinkedList.GetExpectedLinkedListForRemoveFirstTest(index);
 
             //act
             list.RemoveFirst();
 
             //assert
 
-            Assert.AreEqual(expected, list);
+            Assert.AreEqual(expected.ToArray(), list.ToArray());
         }
 
 
@@ -237,41 +234,38 @@ namespace Core.Tests
         public void RemoveFirstTestNegative()
         {
             //arrange
-            ArrayList list = new ArrayList();
+            LinkedList list = new LinkedList();
 
             //act assert
             IndexOutOfRangeException ex = Assert.Throws<IndexOutOfRangeException>(() => list.RemoveFirst());
         }
 
-
         [TestCase(0)]
         [TestCase(1)]
         [TestCase(2)]
-        [TestCase(3)]
         public void RemoveLastTest(int index)
         {
             //arrange
-            ArrayList list = TestDataArrayList.GetArrayListForRemoveLastTest(index);
-            ArrayList expected = TestDataArrayList.GetExpectedArrayListForRemoveLastTest(index);
+            LinkedList list = TestDataLinkedList.GetLinkedListForRemoveLastTest(index);
+            LinkedList expected = TestDataLinkedList.GetExpectedLinkedListForRemoveLastTest(index);
 
             //act
             list.RemoveLast();
 
             //assert
 
-            Assert.AreEqual(expected, list);
+            Assert.AreEqual(expected.ToArray(), list.ToArray());
         }
 
         [Test]
         public void RemoveLastTestNegative()
         {
             //arrange
-            ArrayList list = new ArrayList();
+            LinkedList list = new LinkedList();
 
             //act assert
             IndexOutOfRangeException ex = Assert.Throws<IndexOutOfRangeException>(() => list.RemoveLast());
         }
-
 
         [TestCase(0)]
         [TestCase(1)]
@@ -280,16 +274,16 @@ namespace Core.Tests
         public void RemoveAtTest(int index)
         {
             //arrange
-            ArrayList list = TestDataArrayList.GetArrayListForRemoveAtTest(index);
-            int indexToRemove = TestDataArrayList.GetIndexForRemoveAtTest(index);
-            ArrayList expected = TestDataArrayList.GetExpectedArrayListForRemoveAtTest(index);
+            LinkedList list = TestDataLinkedList.GetLinkedListForRemoveAtTest(index);
+            int indexToRemove = TestDataLinkedList.GetIndexForRemoveAtTest(index);
+            LinkedList expected = TestDataLinkedList.GetExpectedLinkedListForRemoveAtTest(index);
 
             //act
             list.RemoveAt(indexToRemove);
 
             //assert
 
-            Assert.AreEqual(expected, list);
+            Assert.AreEqual(expected.ToArray(), list.ToArray());
         }
 
 
@@ -301,12 +295,11 @@ namespace Core.Tests
         {
 
             //arrange
-            ArrayList list = new ArrayList(array);
+            LinkedList list = new LinkedList(array);
 
             //act assert
             IndexOutOfRangeException ex = Assert.Throws<IndexOutOfRangeException>(() => list.RemoveAt(index));
         }
-
 
         [TestCase(0)]
         [TestCase(1)]
@@ -316,16 +309,16 @@ namespace Core.Tests
         public void RemoveFirstMultipleTest(int index)
         {
             //arrange
-            ArrayList list = TestDataArrayList.GetArrayListForRemoveFirstMultipleTest(index);
-            int count = TestDataArrayList.GetCountForRemoveFirstMulptipleTest(index);
-            ArrayList expected = TestDataArrayList.GetExpectedArrayListForRemoveFirstMultipleTest(index);
+            LinkedList list = TestDataLinkedList.GetLinkedListForRemoveFirstMultipleTest(index);
+            int count = TestDataLinkedList.GetCountForRemoveFirstMulptipleTest(index);
+            LinkedList expected = TestDataLinkedList.GetExpectedLinkedListForRemoveFirstMultipleTest(index);
 
             //act
             list.RemoveFirstMultiple(count);
 
             //assert
 
-            Assert.AreEqual(expected, list);
+            Assert.AreEqual(expected.ToArray(), list.ToArray());
         }
 
 
@@ -335,12 +328,10 @@ namespace Core.Tests
         {
 
             //arrange
-            ArrayList list = new ArrayList(array);
+            LinkedList list = new LinkedList(array);
 
             //act assert
             IndexOutOfRangeException ex = Assert.Throws<IndexOutOfRangeException>(() => list.RemoveFirstMultiple(count));
-
-            Assert.AreEqual("You cannot remove elements outside of range of ArrayList", ex.Message);
         }
 
         [TestCase(-1, new int[] { 1, 2, 3 })]
@@ -348,7 +339,7 @@ namespace Core.Tests
         {
 
             //arrange
-            ArrayList list = new ArrayList(array);
+            LinkedList list = new LinkedList(array);
 
             //act assert
             ArgumentException ex = Assert.Throws<ArgumentException>(() => list.RemoveFirstMultiple(count));
@@ -365,28 +356,29 @@ namespace Core.Tests
         public void RemoveLastMultipleTest(int index)
         {
             //arrange
-            ArrayList list = TestDataArrayList.GetArrayListForRemoveLastMultipleTest(index);
-            int count = TestDataArrayList.GetCountForRemoveLastMulptipleTest(index);
-            ArrayList expected = TestDataArrayList.GetExpectedArrayListForRemoveLastMultipleTest(index);
+            LinkedList list = TestDataLinkedList.GetLinkedListForRemoveLastMultipleTest(index);
+            int count = TestDataLinkedList.GetCountForRemoveLastMulptipleTest(index);
+            LinkedList expected = TestDataLinkedList.GetExpectedLinkedListForRemoveLastMultipleTest(index);
 
             //act
             list.RemoveLastMultiple(count);
 
             //assert
 
-            Assert.AreEqual(expected, list);
+            Assert.AreEqual(expected.ToArray(), list.ToArray());
         }
 
-        [TestCase(4, new int[] { 1, 2, 3 })]
         [TestCase(1, new int[] { })]
         public void RemoveLastMultipleTestNegative(int count, int[] array)
         {
 
             //arrange
-            ArrayList list = new ArrayList(array);
+            LinkedList list = new LinkedList(array);
 
             //act assert
             IndexOutOfRangeException ex = Assert.Throws<IndexOutOfRangeException>(() => list.RemoveLastMultiple(count));
+
+
         }
 
         [TestCase(-1, new int[] { 1, 2, 3 })]
@@ -394,7 +386,7 @@ namespace Core.Tests
         {
 
             //arrange
-            ArrayList list = new ArrayList(array);
+            LinkedList list = new LinkedList(array);
 
             //act assert
             ArgumentException ex = Assert.Throws<ArgumentException>(() => list.RemoveLastMultiple(count));
@@ -402,25 +394,39 @@ namespace Core.Tests
             Assert.AreEqual("Count can't be less than zero", ex.Message);
         }
 
+        [TestCase(4, new int[] { 1, 2, 3 })]
+        public void RemoveLastMultipleTestNegative3(int count, int[] array)
+        {
+
+            //arrange
+            LinkedList list = new LinkedList(array);
+
+            //act assert
+            IndexOutOfRangeException ex = Assert.Throws<IndexOutOfRangeException>(() => list.RemoveLastMultiple(count));
+
+            Assert.AreEqual("Count of removed elements can't be grater than current length of LinkedList", ex.Message);
+        }
 
         [TestCase(0)]
         [TestCase(1)]
         [TestCase(2)]
         [TestCase(3)]
         [TestCase(4)]
+        [TestCase(5)]
+        [TestCase(6)]
         public void RemoveAtMultipleTest(int index)
         {
             //arrange
-            ArrayList list = TestDataArrayList.GetArrayListForRemoveAtMultipleTest(index);
-            (int indexToRemove, int count) = TestDataArrayList.GetIndexToRemoveAndCountForRemoveAtMulptipleTest(index);
-            ArrayList expected = TestDataArrayList.GetExpectedArrayListForRemoveAtMultipleTest(index);
+            LinkedList list = TestDataLinkedList.GetLinkedListForRemoveAtMultipleTest(index);
+            (int indexToRemove, int count) = TestDataLinkedList.GetIndexToRemoveAndCountForRemoveAtMulptipleTest(index);
+            LinkedList expected = TestDataLinkedList.GetExpectedLinkedListForRemoveAtMultipleTest(index);
 
             //act
             list.RemoveAtMultiple(indexToRemove, count);
 
             //assert
 
-            Assert.AreEqual(expected, list);
+            Assert.AreEqual(expected.ToArray(), list.ToArray());
         }
 
 
@@ -430,7 +436,7 @@ namespace Core.Tests
         {
 
             //arrange
-            ArrayList list = new ArrayList(array);
+            LinkedList list = new LinkedList(array);
 
             //act assert
             IndexOutOfRangeException ex = Assert.Throws<IndexOutOfRangeException>(() => list.RemoveAtMultiple(index, count));
@@ -441,7 +447,7 @@ namespace Core.Tests
         {
 
             //arrange
-            ArrayList list = new ArrayList(array);
+            LinkedList list = new LinkedList(array);
 
             //act assert
             ArgumentException ex = Assert.Throws<ArgumentException>(() => list.RemoveAtMultiple(index, count));
@@ -455,12 +461,12 @@ namespace Core.Tests
         {
 
             //arrange
-            ArrayList list = new ArrayList(array);
+            LinkedList list = new LinkedList(array);
 
             //act assert
             IndexOutOfRangeException ex = Assert.Throws<IndexOutOfRangeException>(() => list.RemoveAtMultiple(index, count));
 
-            Assert.AreEqual("You cannot remove elements outside of range of ArrayList", ex.Message);
+            Assert.AreEqual("You can't remove items outside of bounds LinkedList", ex.Message);
 
         }
 
@@ -475,19 +481,18 @@ namespace Core.Tests
         public void RemoveFirstValueTest(int index)
         {
             //arrange
-            ArrayList list = TestDataArrayList.GetArrayListForRemoveFirstValueTest(index);
-            int value = TestDataArrayList.GetValueToRemoveForRemoveFirstValueTest(index);
-            (ArrayList expected, int expected2) = TestDataArrayList.GetExpectedArrayListAndIndexForRemoveFirstValueTest(index);
+            LinkedList list = TestDataLinkedList.GetLinkedListForRemoveFirstValueTest(index);
+            int value = TestDataLinkedList.GetValueToRemoveForRemoveFirstValueTest(index);
+            (LinkedList expected, int expected2) = TestDataLinkedList.GetExpectedLinkedListAndIndexForRemoveFirstValueTest(index);
 
             //act
             int actual2 = list.RemoveFirst(value);
 
             //assert
 
-            Assert.AreEqual(expected, list);
+            Assert.AreEqual(expected.ToArray(), list.ToArray());
             Assert.AreEqual(expected2, actual2);
         }
-
 
         [TestCase(0)]
         [TestCase(1)]
@@ -501,29 +506,30 @@ namespace Core.Tests
         public void RemoveAllTest(int index)
         {
             //arrange
-            ArrayList list = TestDataArrayList.GetArrayListForRemoveAllTest(index);
-            int value = TestDataArrayList.GetValueToRemoveForRemoveAllTest(index);
-            (ArrayList expected, int expected2) = TestDataArrayList.GetExpectedArrayListAndCountForRemoveAllTest(index);
+            LinkedList list = TestDataLinkedList.GetLinkedListForRemoveAllTest(index);
+            int value = TestDataLinkedList.GetValueToRemoveForRemoveAllTest(index);
+            (LinkedList expected, int expected2) = TestDataLinkedList.GetExpectedLinkedListAndCountForRemoveAllTest(index);
 
             //act
             int actual2 = list.RemoveAll(value);
 
             //assert
 
-            Assert.AreEqual(expected, list);
+            Assert.AreEqual(expected.ToArray(), list.ToArray());
             Assert.AreEqual(expected2, actual2);
         }
-
 
         [TestCase(new int[] { 1, 2, 3 }, 4, false)]
         [TestCase(new int[] { 1, 2, 3 }, 2, true)]
         [TestCase(new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 2 }, 2, true)]
+        [TestCase(new int[] { 2, 3, 3, 3, 3, 3, 3, 3, 3 }, 2, true)]
+        [TestCase(new int[] { 3, 3, 3, 3, 3, 3, 3, 2, 3 }, 2, true)]
         [TestCase(new int[] { }, 4, false)]
         [TestCase(new int[] { 1 }, 4, false)]
         public void ContainsTest(int[] array, int value, bool expected)
         {
             //arrange
-            ArrayList list = new ArrayList(array);
+            LinkedList list = new LinkedList(array);
 
             //act
             bool actual = list.Contains(value);
@@ -532,7 +538,6 @@ namespace Core.Tests
 
             Assert.AreEqual(expected, actual);
         }
-
 
         [TestCase(new int[] { 1, 2, 3 }, 4, -1)]
         [TestCase(new int[] { 1, 2, 3 }, 2, 1)]
@@ -543,7 +548,7 @@ namespace Core.Tests
         public void IndexOfTest(int[] array, int value, int expected)
         {
             //arrange
-            ArrayList list = new ArrayList(array);
+            LinkedList list = new LinkedList(array);
 
             //act
             int actual = list.IndexOf(value);
@@ -560,7 +565,7 @@ namespace Core.Tests
         public void GetFirstTest(int[] array, int expected)
         {
             //arrange
-            ArrayList list = new ArrayList(array);
+            LinkedList list = new LinkedList(array);
 
             //act
             int actual = list.GetFirst();
@@ -575,7 +580,7 @@ namespace Core.Tests
         {
 
             //arrange
-            ArrayList list = new ArrayList(array);
+            LinkedList list = new LinkedList(array);
 
             //act assert
             IndexOutOfRangeException ex = Assert.Throws<IndexOutOfRangeException>(() => list.GetFirst());
@@ -589,7 +594,7 @@ namespace Core.Tests
         public void GetLastTest(int[] array, int expected)
         {
             //arrange
-            ArrayList list = new ArrayList(array);
+            LinkedList list = new LinkedList(array);
 
             //act
             int actual = list.GetLast();
@@ -604,7 +609,7 @@ namespace Core.Tests
         {
 
             //arrange
-            ArrayList list = new ArrayList(array);
+            LinkedList list = new LinkedList(array);
 
             //act assert
             IndexOutOfRangeException ex = Assert.Throws<IndexOutOfRangeException>(() => list.GetLast());
@@ -617,7 +622,7 @@ namespace Core.Tests
         public void GetByIndexTest(int[] array, int index, int expected)
         {
             //arrange
-            ArrayList list = new ArrayList(array);
+            LinkedList list = new LinkedList(array);
 
             //act
             int actual = list.Get(index);
@@ -635,12 +640,11 @@ namespace Core.Tests
         {
 
             //arrange
-            ArrayList list = new ArrayList(array);
+            LinkedList list = new LinkedList(array);
 
             //act assert
             IndexOutOfRangeException ex = Assert.Throws<IndexOutOfRangeException>(() => list.Get(index));
         }
-
 
         [TestCase(new int[] { 1, 2, 3 }, new int[] { 3, 2, 1 })]
         [TestCase(new int[] { 5 }, new int[] { 5 })]
@@ -648,18 +652,19 @@ namespace Core.Tests
         [TestCase(new int[] { }, new int[] { })]
         [TestCase(new int[] { 2, 2, 2, 2 }, new int[] { 2, 2, 2, 2 })]
         [TestCase(new int[] { 10, 12, 13, 18, 19, 20, 25 }, new int[] { 25, 20, 19, 18, 13, 12, 10 })]
+        [TestCase(new int[] { 42, 13 }, new int[] { 13, 42 })]
         public void ReverseTest(int[] array, int[] array2)
         {
             //arrange
-            ArrayList list = new ArrayList(array);
-            ArrayList expected = new ArrayList(array2);
+            LinkedList list = new LinkedList(array);
+            LinkedList expected = new LinkedList(array2);
 
             //act
             list.Reverse();
 
             //assert
 
-            Assert.AreEqual(expected, list);
+            Assert.AreEqual(expected.ToArray(), list.ToArray());
         }
 
         [TestCase(new int[] { 10, 12, 13, 18, 19, 20, 25 }, 25)]
@@ -671,7 +676,7 @@ namespace Core.Tests
         public void MaxTest(int[] array, int expected)
         {
             //arrange
-            ArrayList list = new ArrayList(array);
+            LinkedList list = new LinkedList(array);
 
             //act
             int actual = list.Max();
@@ -687,7 +692,7 @@ namespace Core.Tests
         {
 
             //arrange
-            ArrayList list = new ArrayList(array);
+            LinkedList list = new LinkedList(array);
 
             //act assert
             IndexOutOfRangeException ex = Assert.Throws<IndexOutOfRangeException>(() => list.Max());
@@ -702,7 +707,7 @@ namespace Core.Tests
         public void MinTest(int[] array, int expected)
         {
             //arrange
-            ArrayList list = new ArrayList(array);
+            LinkedList list = new LinkedList(array);
 
             //act
             int actual = list.Min();
@@ -717,7 +722,7 @@ namespace Core.Tests
         {
 
             //arrange
-            ArrayList list = new ArrayList(array);
+            LinkedList list = new LinkedList(array);
 
             //act assert
             IndexOutOfRangeException ex = Assert.Throws<IndexOutOfRangeException>(() => list.Min());
@@ -734,7 +739,7 @@ namespace Core.Tests
         public void IndexOfMaxTest(int[] array, int expected)
         {
             //arrange
-            ArrayList list = new ArrayList(array);
+            LinkedList list = new LinkedList(array);
 
             //act
             int actual = list.IndexOfMax();
@@ -755,7 +760,7 @@ namespace Core.Tests
         public void IndexOfMinTest(int[] array, int expected)
         {
             //arrange
-            ArrayList list = new ArrayList(array);
+            LinkedList list = new LinkedList(array);
 
             //act
             int actual = list.IndexOfMin();
@@ -765,46 +770,47 @@ namespace Core.Tests
             Assert.AreEqual(expected, actual);
         }
 
-
         [TestCase(new int[] { 9, 8, 7, 6, 5, 4, 3, 2, 1 }, new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 })]
-        [TestCase(new int[] { 3, 5, 1, 9, 2, 6 }, new int[] { 1, 2, 3, 5, 6, 9 })]
         [TestCase(new int[] { 3, 5, 1, 9, 2, 9, 6 }, new int[] { 1, 2, 3, 5, 6, 9, 9 })]
+        [TestCase(new int[] { 3, 3, 4, 7, -10, 2, -5, -5, 4, 4 }, new int[] { -10, -5, -5, 2, 3, 3, 4, 4, 4, 7 })]
         [TestCase(new int[] { -10, 15, 2, 4, 0, 2, 5, -20 }, new int[] { -20, -10, 0, 2, 2, 4, 5, 15 })]
         [TestCase(new int[] { 2, 2, 2 }, new int[] { 2, 2, 2 })]
+        [TestCase(new int[] { 1, 3 }, new int[] { 1, 3 })]
+        [TestCase(new int[] { 3, 1 }, new int[] { 1, 3 })]
         [TestCase(new int[] { }, new int[] { })]
         public void SortTest(int[] array, int[] array2)
         {
             //arrange
-            ArrayList list = new ArrayList(array);
-            ArrayList expected = new ArrayList(array2);
+            LinkedList list = new LinkedList(array);
+            LinkedList expected = new LinkedList(array2);
 
             //act
             list.Sort();
 
             //assert
 
-            Assert.AreEqual(expected, list);
+            Assert.AreEqual(expected.ToArray(), list.ToArray());
         }
 
-
-        [TestCase(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, new int[] { 9, 8, 7, 6, 5, 4, 3, 2, 1 } )]
-        [TestCase(new int[] { 3, 5, 1, 9, 2, 6 }, new int[] { 9,6,5,3,2,1 })]
-        [TestCase(new int[] { 3, 5, 1, 9, 2, 9, 6 }, new int[] { 9,9,6,5,3,2,1})]
-        [TestCase(new int[] { -10, 15, 2, 4, 0, 2, 5, -20 }, new int[] { 15,5,4,2,2,0,-10,-20 })]
+        [TestCase(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, new int[] { 9, 8, 7, 6, 5, 4, 3, 2, 1 })]
+        [TestCase(new int[] { 3, 5, 1, 9, 2, 9, 6 }, new int[] { 9, 9, 6, 5, 3, 2, 1 })]
+        [TestCase(new int[] { 3, 3, 4, 7, -10, 2, -5, -5, 4, 4 }, new int[] { 7, 4, 4, 4, 3, 3, 2, -5, -5, -10 })]
+        [TestCase(new int[] { -10, 15, 2, 4, 0, 2, 5, -20 }, new int[] { 15, 5, 4, 2, 2, 0, -10, -20 })]
         [TestCase(new int[] { 2, 2, 2 }, new int[] { 2, 2, 2 })]
         [TestCase(new int[] { }, new int[] { })]
         public void SortDescTest(int[] array, int[] array2)
         {
             //arrange
-            ArrayList list = new ArrayList(array);
-            ArrayList expected = new ArrayList(array2);
+            LinkedList list = new LinkedList(array);
+            LinkedList expected = new LinkedList(array2);
 
             //act
             list.SortDesc();
 
             //assert
 
-            Assert.AreEqual(expected, list);
+            Assert.AreEqual(expected.ToArray(), list.ToArray());
         }
+
     }
 }
