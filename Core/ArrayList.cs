@@ -268,6 +268,9 @@ namespace Core
             }
 
             _currentUsedLength -= count;
+           
+            
+            Shrink();
 
             if (_array.Length > _currentUsedLength)
             {
@@ -276,9 +279,6 @@ namespace Core
                     _array[i] = 0;
                 }
             }
-
-            Shrink();
-
         }
 
         public int RemoveFirst(int value)
@@ -297,11 +297,14 @@ namespace Core
         {
             int countOfRemoved = 0;
 
-            int index;
-            while ((index = IndexOf(value)) != -1)
+            for (int i = 0; i < _currentUsedLength; i++)
             {
-                RemoveAt(index);
-                countOfRemoved++;
+                if (_array[i] == value)
+                {
+                    RemoveAt(i);
+                    i--;
+                    countOfRemoved++;
+                }
             }
 
             return countOfRemoved;
