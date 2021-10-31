@@ -44,7 +44,7 @@ namespace Core.Tests
 
             //assert
 
-            Assert.AreEqual(expected.ToArray(), list.ToArray());
+            Assert.AreEqual(expected, list);
         }
 
 
@@ -65,7 +65,7 @@ namespace Core.Tests
 
             //assert
 
-            Assert.AreEqual(expected.ToArray(), list.ToArray());
+            Assert.AreEqual(expected, list);
         }
 
 
@@ -84,7 +84,7 @@ namespace Core.Tests
 
             //assert
 
-            Assert.AreEqual(expected.ToArray(), list.ToArray());
+            Assert.AreEqual(expected, list);
         }
 
 
@@ -105,7 +105,7 @@ namespace Core.Tests
 
             //assert
 
-            Assert.AreEqual(expected.ToArray(), list.ToArray());
+            Assert.AreEqual(expected, list);
         }
 
         [TestCase(0)]
@@ -125,7 +125,7 @@ namespace Core.Tests
 
             //assert
 
-            Assert.AreEqual(expected.ToArray(), list.ToArray());
+            Assert.AreEqual(expected, list);
         }
 
 
@@ -162,7 +162,7 @@ namespace Core.Tests
 
             //assert
 
-            Assert.AreEqual(expected.ToArray(), list.ToArray());
+            Assert.AreEqual(expected, list);
         }
 
         [TestCase(0, 4)]
@@ -195,7 +195,7 @@ namespace Core.Tests
 
             //assert
 
-            Assert.AreEqual(expected.ToArray(), list.ToArray());
+            Assert.AreEqual(expected, list);
         }
 
         [TestCase(0, 3)]
@@ -225,7 +225,7 @@ namespace Core.Tests
 
             //assert
 
-            Assert.AreEqual(expected.ToArray(), list.ToArray());
+            Assert.AreEqual(expected, list);
         }
 
 
@@ -253,7 +253,7 @@ namespace Core.Tests
 
             //assert
 
-            Assert.AreEqual(expected.ToArray(), list.ToArray());
+            Assert.AreEqual(expected, list);
         }
 
         [Test]
@@ -282,7 +282,7 @@ namespace Core.Tests
 
             //assert
 
-            Assert.AreEqual(expected.ToArray(), list.ToArray());
+            Assert.AreEqual(expected, list);
         }
 
 
@@ -317,7 +317,7 @@ namespace Core.Tests
 
             //assert
 
-            Assert.AreEqual(expected.ToArray(), list.ToArray());
+            Assert.AreEqual(expected, list);
         }
 
 
@@ -364,7 +364,7 @@ namespace Core.Tests
 
             //assert
 
-            Assert.AreEqual(expected.ToArray(), list.ToArray());
+            Assert.AreEqual(expected, list);
         }
 
         [TestCase(1, new int[] { })]
@@ -413,7 +413,7 @@ namespace Core.Tests
 
             //assert
 
-            Assert.AreEqual(expected.ToArray(), list.ToArray());
+            Assert.AreEqual(expected, list);
         }
 
 
@@ -464,7 +464,7 @@ namespace Core.Tests
 
             //assert
 
-            Assert.AreEqual(expected.ToArray(), list.ToArray());
+            Assert.AreEqual(expected, list);
             Assert.AreEqual(expected2, actual2);
         }
 
@@ -489,7 +489,7 @@ namespace Core.Tests
 
             //assert
 
-            Assert.AreEqual(expected.ToArray(), list.ToArray());
+            Assert.AreEqual(expected, list);
             Assert.AreEqual(expected2, actual2);
         }
 
@@ -638,7 +638,7 @@ namespace Core.Tests
 
             //assert
 
-            Assert.AreEqual(expected.ToArray(), list.ToArray());
+            Assert.AreEqual(expected, list);
         }
 
         [TestCase(new int[] { 10, 12, 13, 18, 19, 20, 25 }, 25)]
@@ -763,7 +763,7 @@ namespace Core.Tests
 
             //assert
 
-            Assert.AreEqual(expected.ToArray(), list.ToArray());
+            Assert.AreEqual(expected, list);
         }
 
         [TestCase(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, new int[] { 9, 8, 7, 6, 5, 4, 3, 2, 1 })]
@@ -783,7 +783,7 @@ namespace Core.Tests
 
             //assert
 
-            Assert.AreEqual(expected.ToArray(), list.ToArray());
+            Assert.AreEqual(expected, list);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Core
 {
@@ -160,6 +161,10 @@ namespace Core
                     _tail = node;
                 }
                 _head = node;
+                if (_head.Next != null)
+                {
+                    _head.Next.Previous = _head;
+                }
                 return;
             }
 
@@ -236,6 +241,7 @@ namespace Core
             if (currentElement.Next != null)
             {
                 tailNewChain.Next = currentElement.Next;
+                currentElement.Next.Previous = tailNewChain;
             }
             else
             {
@@ -360,7 +366,7 @@ namespace Core
             var previousElem = GetPreviousNodeByIndex(count);
 
             _head = previousElem.Next;
-            if (_head ==  null || _head.Next == null)
+            if (_head == null || _head.Next == null)
             {
                 _tail = _head;
             }
@@ -949,6 +955,71 @@ namespace Core
 
 
             _tail = newTail;
+
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is DoublyLinkedList))
+                return false;
+
+            DoublyLinkedList list = (DoublyLinkedList)obj;
+
+
+            DoublyLinkedListNode currentListNode = _head;
+            DoublyLinkedListNode currentObjListNode = list._head;
+
+            //need to check values for current nodes only once - for heads. Because other values will be checked by comparsion of next nodes
+            if (currentListNode != null && currentObjListNode != null && currentListNode.Value != currentObjListNode.Value)
+            {
+                return false;
+            }
+
+
+            while (currentListNode != null && currentObjListNode != null)
+            {
+                if ((currentListNode.Previous == null || currentObjListNode.Previous == null) && currentListNode.Previous != currentObjListNode.Previous)
+                {
+                    return false;
+                }
+
+                if (currentListNode.Previous != null && currentObjListNode.Previous != null && currentListNode.Previous.Value != currentObjListNode.Previous.Value)
+                {
+                    return false;
+                }
+
+                if ((currentListNode.Next == null || currentObjListNode.Next == null) && currentListNode.Next != currentObjListNode.Next)
+                {
+                    return false;
+                }
+
+                if (currentListNode.Next != null && currentObjListNode.Next != null && currentListNode.Next.Value != currentObjListNode.Next.Value)
+                {
+                    return false;
+                }
+
+                currentListNode = currentListNode.Next;
+                currentObjListNode = currentObjListNode.Next;
+
+            }
+
+            //need to be null for both after all While loops
+            if (currentListNode != currentObjListNode)
+            {
+                return false;
+            }
+
+            if ((_tail == null || list._tail == null) && _tail != list._tail)
+            {
+                return false;
+            }
+
+            if (_tail != null && list._tail != null && _tail.Value != list._tail.Value)
+            {
+                return false;
+            }
+
+            return true;
 
         }
     }
