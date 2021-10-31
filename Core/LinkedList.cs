@@ -8,14 +8,14 @@ namespace Core
 {
     public class LinkedList
     {
-        private Node _head;
+        private LinkedListNode _head;
 
 
-        private Node GetLastNode()
+        private LinkedListNode GetLastNode()
         {
             if (_head == null)
                 return null;
-            Node currentNode = _head;
+            LinkedListNode currentNode = _head;
             while (currentNode.Next != null)
             {
                 currentNode = currentNode.Next;
@@ -31,7 +31,7 @@ namespace Core
 
         public LinkedList(int value)
         {
-            var node = new Node { Value = value };
+            var node = new LinkedListNode { Value = value };
             _head = node;
         }
 
@@ -44,12 +44,12 @@ namespace Core
                 return;
             }
 
-            _head = new Node { Value = array[0] };
-            Node current = _head;
+            _head = new LinkedListNode { Value = array[0] };
+            LinkedListNode current = _head;
             for (int i = 1; i < array.Length; i++)
             {
-                Node previous = current;
-                current = new Node { Value = array[i] };
+                LinkedListNode previous = current;
+                current = new LinkedListNode { Value = array[i] };
                 previous.Next = current;
             }
         }
@@ -57,7 +57,7 @@ namespace Core
         public int GetLength()
         {
             int length = 0;
-            Node current = _head;
+            LinkedListNode current = _head;
             while (current != null)
             {
                 length++;
@@ -71,7 +71,7 @@ namespace Core
             int[] arrayToReturn = new int[GetLength()];
 
             int i = 0;
-            Node current = _head;
+            LinkedListNode current = _head;
             while (current != null)
             {
                 arrayToReturn[i] = current.Value;
@@ -87,20 +87,20 @@ namespace Core
             AddAt(0, value);
         }
 
-        private (Node head, Node tail) GetNewChainNodsByLinkedList(LinkedList list)
+        private (LinkedListNode head, LinkedListNode tail) GetNewChainNodsByLinkedList(LinkedList list)
         {
             if (list._head == null)
                 return (null, null);
 
-            Node currentNewChain = new Node { Value = list._head.Value };
-            Node headNewChain = currentNewChain;
+            LinkedListNode currentNewChain = new LinkedListNode { Value = list._head.Value };
+            LinkedListNode headNewChain = currentNewChain;
 
-            Node currentInList = list._head.Next;
+            LinkedListNode currentInList = list._head.Next;
 
             while (currentInList != null)
             {
-                Node previousToAdd = currentNewChain;
-                currentNewChain = new Node { Value = currentInList.Value };
+                LinkedListNode previousToAdd = currentNewChain;
+                currentNewChain = new LinkedListNode { Value = currentInList.Value };
                 previousToAdd.Next = currentNewChain;
 
                 currentInList = currentInList.Next;
@@ -115,7 +115,7 @@ namespace Core
             if (list._head == null)
                 return;
 
-            (Node headNewChain, Node tailNewChain) = GetNewChainNodsByLinkedList(list);
+            (LinkedListNode headNewChain, LinkedListNode tailNewChain) = GetNewChainNodsByLinkedList(list);
 
             tailNewChain.Next = _head;
             _head = headNewChain;
@@ -123,13 +123,13 @@ namespace Core
 
         public void AddLast(int value)
         {
-            Node node = new Node { Value = value };
+            LinkedListNode node = new LinkedListNode { Value = value };
             if (_head == null)
             {
                 _head = node;
                 return;
             }
-            Node last = GetLastNode();
+            LinkedListNode last = GetLastNode();
             last.Next = node;
         }
 
@@ -138,7 +138,7 @@ namespace Core
             if (list._head == null)
                 return;
 
-            (Node headNewChain, Node tailNewChain) = GetNewChainNodsByLinkedList(list);
+            (LinkedListNode headNewChain, LinkedListNode tailNewChain) = GetNewChainNodsByLinkedList(list);
 
             if (_head == null)
             {
@@ -146,7 +146,7 @@ namespace Core
                 return;
             }
 
-            Node last = GetLastNode();
+            LinkedListNode last = GetLastNode();
             last.Next = headNewChain;
 
         }
@@ -155,7 +155,7 @@ namespace Core
         {
             if (index == 0)
             {
-                Node node = new Node { Value = value, Next = _head };
+                LinkedListNode node = new LinkedListNode { Value = value, Next = _head };
                 _head = node;
                 return;
             }
@@ -166,7 +166,7 @@ namespace Core
             }
 
 
-            Node currentElement = _head;
+            LinkedListNode currentElement = _head;
             int currentIndex = 0;
             while (currentIndex != index - 1)
             {
@@ -178,14 +178,14 @@ namespace Core
                 currentIndex++;
             }
 
-            Node nodeToAdd = new Node() { Value = value, Next = currentElement.Next };
+            LinkedListNode nodeToAdd = new LinkedListNode() { Value = value, Next = currentElement.Next };
             currentElement.Next = nodeToAdd;
 
         }
 
-        private Node GetPreviousNodeByIndex(int index)
+        private LinkedListNode GetPreviousNodeByIndex(int index)
         {
-            Node currentElement = _head;
+            LinkedListNode currentElement = _head;
             int currentIndex = 0;
             while (currentIndex != index - 1)
             {
@@ -218,9 +218,9 @@ namespace Core
 
 
 
-            (Node headNewChain, Node tailNewChain) = GetNewChainNodsByLinkedList(list);
+            (LinkedListNode headNewChain, LinkedListNode tailNewChain) = GetNewChainNodsByLinkedList(list);
 
-            Node currentElement = GetPreviousNodeByIndex(index);
+            LinkedListNode currentElement = GetPreviousNodeByIndex(index);
 
             if (currentElement.Next != null)
             {
@@ -241,7 +241,7 @@ namespace Core
                 throw new IndexOutOfRangeException();
             }
 
-            Node currentElement = _head;
+            LinkedListNode currentElement = _head;
             int currentIndex = 0;
             while (currentIndex != index)
             {
@@ -278,7 +278,7 @@ namespace Core
                 return;
             }
 
-            Node current = _head;
+            LinkedListNode current = _head;
             while (current.Next.Next != null)
             {
                 current = current.Next;
@@ -300,7 +300,7 @@ namespace Core
                 return;
             }
 
-            Node currentElement = GetPreviousNodeByIndex(index);
+            LinkedListNode currentElement = GetPreviousNodeByIndex(index);
 
             if (currentElement.Next == null)
             {
@@ -362,7 +362,7 @@ namespace Core
                 return;
             }
 
-            Node nodeToRemoveLink = GetPreviousNodeByIndex(currentLength - count);
+            LinkedListNode nodeToRemoveLink = GetPreviousNodeByIndex(currentLength - count);
 
             nodeToRemoveLink.Next = null;
 
@@ -397,9 +397,9 @@ namespace Core
                 throw new IndexOutOfRangeException("You can't remove items outside of bounds LinkedList");
             }
 
-            Node currentElement = _head;
+            LinkedListNode currentElement = _head;
             int currentIndex = 0;
-            Node nodeToReplaceLink = new Node();
+            LinkedListNode nodeToReplaceLink = new LinkedListNode();
             while (currentIndex != index + count - 1)
             {
                 if (currentElement.Next == null)
@@ -423,8 +423,8 @@ namespace Core
         public int RemoveFirst(int value)
         {
             int indexToRemove = 0;
-            Node currentNode = _head;
-            Node previousNode = null;
+            LinkedListNode currentNode = _head;
+            LinkedListNode previousNode = null;
 
             while (currentNode != null && currentNode.Value != value)
             {
@@ -463,8 +463,8 @@ namespace Core
 
             // more efficient realisation (because we pass through  LinkedList just once, and have O(n) complexity)
 
-            Node currentNode = _head;
-            Node newTail = _head;
+            LinkedListNode currentNode = _head;
+            LinkedListNode newTail = _head;
             int removedCount = 0;
 
             while (currentNode != null)
@@ -495,7 +495,7 @@ namespace Core
 
         public bool Contains(int value)
         {
-            Node currentNode = _head;
+            LinkedListNode currentNode = _head;
             while (currentNode != null)
             {
                 if (currentNode.Value == value)
@@ -509,7 +509,7 @@ namespace Core
         public int IndexOf(int value)
         {
             int currentIndex = 0;
-            Node currentNode = _head;
+            LinkedListNode currentNode = _head;
             while (currentNode != null)
             {
                 if (currentNode.Value == value)
@@ -542,7 +542,7 @@ namespace Core
             if (index < 0 || _head == null)
                 throw new IndexOutOfRangeException();
 
-            Node currentNode = _head;
+            LinkedListNode currentNode = _head;
             int currentIndex = 0;
 
             while (currentNode != null)
@@ -563,11 +563,11 @@ namespace Core
             if (_head == null || _head.Next == null)
                 return;
 
-            Node currentNode = _head.Next;
-            Node previousNode = _head;
+            LinkedListNode currentNode = _head.Next;
+            LinkedListNode previousNode = _head;
             while (currentNode != null)
             {
-                Node next = currentNode.Next;
+                LinkedListNode next = currentNode.Next;
 
                 currentNode.Next = previousNode;
                 previousNode = currentNode;
@@ -586,7 +586,7 @@ namespace Core
                 throw new IndexOutOfRangeException();
 
             int maxValue = _head.Value;
-            Node currentNode = _head.Next;
+            LinkedListNode currentNode = _head.Next;
             while (currentNode != null)
             {
                 if (maxValue < currentNode.Value)
@@ -604,7 +604,7 @@ namespace Core
                 throw new IndexOutOfRangeException();
 
             int minValue = _head.Value;
-            Node currentNode = _head.Next;
+            LinkedListNode currentNode = _head.Next;
             while (currentNode != null)
             {
                 if (minValue > currentNode.Value)
@@ -624,7 +624,7 @@ namespace Core
             int maxValue = _head.Value;
             int indexOfMaxValue = 0;
 
-            Node currentNode = _head.Next;
+            LinkedListNode currentNode = _head.Next;
             int currentIndex = 0;
             while (currentNode != null)
             {
@@ -647,7 +647,7 @@ namespace Core
             int minValue = _head.Value;
             int indexOfMinValue = 0;
 
-            Node currentNode = _head.Next;
+            LinkedListNode currentNode = _head.Next;
             int currentIndex = 0;
             while (currentNode != null)
             {
@@ -668,17 +668,17 @@ namespace Core
                 return;
 
 
-            Node currentNodeToCheck = _head;
+            LinkedListNode currentNodeToCheck = _head;
             // bug or feature?
-            Node previousNodeToCheck = new Node() { Next = _head };
+            LinkedListNode previousNodeToCheck = new LinkedListNode() { Next = _head };
 
             while (currentNodeToCheck.Next != null)
             {
                 int minValue = currentNodeToCheck.Value;
-                Node previousNodeOfMinValueNode = previousNodeToCheck;
+                LinkedListNode previousNodeOfMinValueNode = previousNodeToCheck;
 
-                Node previousNodeOfFindMinValueNode = currentNodeToCheck;
-                Node currentNodeToFindMinValue = currentNodeToCheck.Next;
+                LinkedListNode previousNodeOfFindMinValueNode = currentNodeToCheck;
+                LinkedListNode currentNodeToFindMinValue = currentNodeToCheck.Next;
 
                 while (currentNodeToFindMinValue != null)
                 {
@@ -701,10 +701,10 @@ namespace Core
                     //for near nodes
                     if (previousNodeToCheck.Next == previousNodeOfMinValueNode)
                     {
-                        Node tmp1 = previousNodeOfMinValueNode.Next;
+                        LinkedListNode tmp1 = previousNodeOfMinValueNode.Next;
                         previousNodeOfMinValueNode.Next = previousNodeOfMinValueNode.Next.Next;
 
-                        Node tmp2 = previousNodeToCheck.Next;
+                        LinkedListNode tmp2 = previousNodeToCheck.Next;
                         if (previousNodeToCheck.Next == _head)
                         {
                             _head = tmp1;
@@ -720,7 +720,7 @@ namespace Core
                     }
                     else
                     {
-                        Node _ = previousNodeOfMinValueNode.Next.Next;
+                        LinkedListNode _ = previousNodeOfMinValueNode.Next.Next;
                         previousNodeOfMinValueNode.Next.Next = previousNodeToCheck.Next.Next;
                         previousNodeToCheck.Next.Next = _;
 
@@ -758,17 +758,17 @@ namespace Core
                 return;
 
 
-            Node currentNodeToCheck = _head;
+            LinkedListNode currentNodeToCheck = _head;
             // bug or feature?
-            Node previousNodeToCheck = new Node() { Next = _head };
+            LinkedListNode previousNodeToCheck = new LinkedListNode() { Next = _head };
 
             while (currentNodeToCheck.Next != null)
             {
                 int maxValue = currentNodeToCheck.Value;
-                Node previousNodeOfMaxValueNode = previousNodeToCheck;
+                LinkedListNode previousNodeOfMaxValueNode = previousNodeToCheck;
 
-                Node previousNodeOfFindMaxValueNode = currentNodeToCheck;
-                Node currentNodeToFindMaxValue = currentNodeToCheck.Next;
+                LinkedListNode previousNodeOfFindMaxValueNode = currentNodeToCheck;
+                LinkedListNode currentNodeToFindMaxValue = currentNodeToCheck.Next;
 
                 while (currentNodeToFindMaxValue != null)
                 {
@@ -791,10 +791,10 @@ namespace Core
                     //for near nodes
                     if (previousNodeToCheck.Next == previousNodeOfMaxValueNode)
                     {
-                        Node tmp1 = previousNodeOfMaxValueNode.Next;
+                        LinkedListNode tmp1 = previousNodeOfMaxValueNode.Next;
                         previousNodeOfMaxValueNode.Next = previousNodeOfMaxValueNode.Next.Next;
 
-                        Node tmp2 = previousNodeToCheck.Next;
+                        LinkedListNode tmp2 = previousNodeToCheck.Next;
                         if (previousNodeToCheck.Next == _head)
                         {
                             _head = tmp1;
@@ -810,7 +810,7 @@ namespace Core
                     }
                     else
                     {
-                        Node _ = previousNodeOfMaxValueNode.Next.Next;
+                        LinkedListNode _ = previousNodeOfMaxValueNode.Next.Next;
                         previousNodeOfMaxValueNode.Next.Next = previousNodeToCheck.Next.Next;
                         previousNodeToCheck.Next.Next = _;
 
